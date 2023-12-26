@@ -31,6 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [ClientController::class, 'store'])->name('client-store');
         Route::post('/update/{id}', [ClientController::class, 'store'])->name('client-update');
         Route::get('/destroy/{id}', [ClientController::class, 'destroy'])->name('client-destroy');
+        Route::post('/{clientId}/add-extra-logo', [ClientController::class, 'addExtraLogo'])->name('client-add-extra-logo');
+        Route::get('/{clientId}/remove-extra-logo/{extraLogoPath}', [ClientController::class, 'removeExtraLogo'])->name('client-remove-extra-logo');
     });
 
     Route::prefix('/project')->group(function () {

@@ -12,7 +12,8 @@ class Client extends Model
         'name',
         'tax_no',
         'address',
-        'country'
+        'country',
+        'extra_logos'
     ];
 
     public function projects()

@@ -7,6 +7,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ClientController extends Controller
 {
@@ -105,5 +106,64 @@ class ClientController extends Controller
         }
         $client->delete();
         return back();
+    }
+
+    /**
+     * Add an additional logo to the client.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $clientId
+     * @return \Illuminate\Http\Response
+     */
+    public function addExtraLogo(Request $request, $clientId)
+    {
+        $request->validate([
+            'extra_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $client = Client::find($clientId);
+
+        if (!$client) {
+            abort(404);
+        }
+
+        $extraLogo = $request->file('extra_logo');
+
+        $extraLogoPath = $extraLogo->store('public');
+
+        $extraLogos = json_decode($client->extra_logos, true);
+
+        $extraLogos[] = basename($extraLogoPath);
+
+        $client->update([
+            'extra_logos' => json_encode($extraLogos),
+        ]);
+
+        return back()->with('success_message', 'Logo dodatkowe zostało dodane.');
+    }
+
+    public function removeExtraLogo($clientId, $extraLogoPath)
+    {
+        $client = Client::find($clientId);
+
+        if (!$client) {
+            abort(404);
+        }
+
+        $extraLogos = json_decode($client->extra_logos, true);
+
+        $extraLogos = array_values(array_diff($extraLogos, [$extraLogoPath]));
+
+        $client->update([
+            'extra_logos' => json_encode($extraLogos),
+        ]);
+
+        $extraLogoFullPath = storage_path("app/public/{$extraLogoPath}");
+
+        if (File::exists($extraLogoFullPath)) {
+            File::delete($extraLogoFullPath);
+        }
+
+        return back()->with('success_message', 'Logo dodatkowe zostało usunięte.');
     }
 }
