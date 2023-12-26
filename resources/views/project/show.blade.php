@@ -7,7 +7,9 @@
                 <p>
                     <b>Klient:</b>
                     <br>
-                    {{ $project->customerName() }}
+                    @foreach ($clients as $client)
+                        {{ $client->name }}<br>
+                    @endforeach
                 </p>
                 <p>
                     <b>Termin:</b>
@@ -24,7 +26,7 @@
             Komentarze
         </div>
         <div class="ibox-content" style="padding-top: 10px;">
-            <div id="commentComponentApp"></div>
+            <div id="commentComponentApp" data-project-id="{{ $project->id }}"></div>
         </div>
     </div>
 @endsection

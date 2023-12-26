@@ -25,4 +25,9 @@ class Project extends Model
         }
         return $client->name;
     }
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class, 'project_client')->withTimestamps();
+    }
 }

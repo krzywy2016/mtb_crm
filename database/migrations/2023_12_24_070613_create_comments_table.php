@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->text('text');
             $table->unsignedBigInteger('commentable_id');
-            $table->string('commentable_type');
+            $table->enum('commentable_type', ['project'])->default('project');
             $table->timestamps();
+
+            $table->foreign('commentable_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

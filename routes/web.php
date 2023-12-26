@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,22 +22,26 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');;
+    })->name('dashboard');
 
-    Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('client-index');
-    Route::get('/client/create', [App\Http\Controllers\ClientController::class, 'create'])->name('client-create');
-    Route::get('/client/edit/{id}', [App\Http\Controllers\ClientController::class, 'edit'])->name('client-edit');
-    Route::post('/client/store', [App\Http\Controllers\ClientController::class, 'store'])->name('client-store');
-    Route::post('/client/update/{id}', [App\Http\Controllers\ClientController::class, 'store'])->name('client-update');
-    Route::get('/client/destroy/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client-destroy');
+    Route::prefix('/client')->group(function () {
+        Route::get('/', [ClientController::class, 'index'])->name('client-index');
+        Route::get('/create', [ClientController::class, 'create'])->name('client-create');
+        Route::get('/edit/{id}', [ClientController::class, 'edit'])->name('client-edit');
+        Route::post('/store', [ClientController::class, 'store'])->name('client-store');
+        Route::post('/update/{id}', [ClientController::class, 'store'])->name('client-update');
+        Route::get('/destroy/{id}', [ClientController::class, 'destroy'])->name('client-destroy');
+    });
 
-    Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index'])->name('project-index');
-    Route::get('/project/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project-create');
-    Route::get('/project/edit/{id}', [App\Http\Controllers\ProjectController::class, 'edit'])->name('project-edit');
-    Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project-store');
-    Route::post('/project/update/{id}', [App\Http\Controllers\ProjectController::class, 'store'])->name('project-update');
-    Route::get('/project/destroy/{id}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('project-destroy');
-    Route::get('/project/show/{id}', [App\Http\Controllers\ProjectController::class, 'show'])->name('project-show');
+    Route::prefix('/project')->group(function () {
+        Route::get('/', [ProjectController::class, 'index'])->name('project-index');
+        Route::get('/create', [ProjectController::class, 'create'])->name('project-create');
+        Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('project-edit');
+        Route::post('/store', [ProjectController::class, 'store'])->name('project-store');
+        Route::post('/update/{id}', [ProjectController::class, 'store'])->name('project-update');
+        Route::get('/destroy/{id}', [ProjectController::class, 'destroy'])->name('project-destroy');
+        Route::get('/show/{id}', [ProjectController::class, 'show'])->name('project-show');
+    });
 });
 
 require __DIR__.'/auth.php';

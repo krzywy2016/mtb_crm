@@ -51,9 +51,19 @@ class ProjectController extends Controller
             $project = new Project();
         }
 
-        $project->fill($request->post());
-
+        $project = new Project();
+        $project->name = $request->input('name');
+        $project->deadline = $request->input('deadline');
+        $project->description = $request->input('description');
         $project->save();
+
+        if ($request->has('client_id') && is_array($request->input('client_id')) && !in_array(null, $request->input('client_id'), true)) {
+            $clientIds = $request->input('client_id');
+            $filteredClientIds = array_filter($clientIds, function ($clientId) {
+                return $clientId !== null;
+            });
+            $project->clients()->attach($filteredClientIds);
+        }
 
         Session::flash('success_message', 'Dane zostały zapisane');
 
@@ -98,6 +108,9 @@ class ProjectController extends Controller
         if (!$project) {
             abort(404);
         }
-        return view('project.show', compact('project'));
+
+        $clients = $project->clients;
+
+        return view('project.show', compact('project', 'clients'));
     }
 }

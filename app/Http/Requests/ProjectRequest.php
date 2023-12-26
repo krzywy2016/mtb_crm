@@ -25,7 +25,8 @@ class ProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'client_id' => 'nullable|integer',
+            'client_id' => 'required|array|min:1', 
+            'client_id.*' => 'exists:clients,id',
             'deadline' => 'nullable|date',
             'description' => 'nullable|max:2048',
         ];

@@ -6,21 +6,23 @@
         </div>
         <div class="col-12 m-b-sm">
             <label>Klient</label>
-            <div class="row">
-                <div class="col-11">
-                    <select type="text" class="form-control" name="client_id">
-                        <option value=""></option>
-                        @foreach ($clients as $client)
-                            <option value="{{ $client->id }}"
-                                {{ old('client_id', $project->client_id) == $client->id ? 'selected' : '' }}>{{ $client->name }}</option>
-                        @endforeach
-                    </select>
+            <div id="input_fields_wrap">
+                <div class="row mt-2 client">
+                    <div class="col-11">
+                        <select type="text" class="form-control" name="client_id[]">
+                            <option value=""></option>
+                            @foreach ($clients as $clientOption)
+                                <option value="{{ $clientOption->id }}"
+                                    {{ old("client_id", $project->client_id) == $clientOption->id ? 'selected' : '' }}>{{ $clientOption->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-1">
+                        <button class="btn btn-default remove_field" {{-- style="display:none;" --}}><i class="fa fa-trash text-danger" aria-hidden="true"></i></button>
+                    </div>
                 </div>
-                <div class="col-1">
-                    <button class="btn btn-default"><i class="fa fa-trash text-danger" aria-hidden="true"></i></button>
-                </div>
-            </div>
-            <button type="button" class="btn btn-default btn-xs m-t-xs" id="multi-add"><i class="fa fa-plus text-info" aria-hidden="true"></i> Dodaj kolejny</button>
+            </div>     
+            <button type="button" class="btn btn-default btn-xs m-t-xs add_field_button"><i class="fa fa-plus text-info" aria-hidden="true"></i> Dodaj kolejny</button>
         </div>
         <div class="col-12 m-b-sm">
             <label>Termin</label>

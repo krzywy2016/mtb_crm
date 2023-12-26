@@ -14,4 +14,9 @@ class Client extends Model
         'address',
         'country'
     ];
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_client')->withTimestamps();
+    }
 }
