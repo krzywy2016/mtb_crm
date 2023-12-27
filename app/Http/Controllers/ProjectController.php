@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Client;
 use App\Models\Project;
+use App\Traits\AssignClientLogoTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+    use AssignClientLogoTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +22,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::with('clients')->get();
+
+        $this->assignClientLogosToProjects();
 
         return view('project.index', compact('projects'));
     }
