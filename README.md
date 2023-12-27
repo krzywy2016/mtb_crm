@@ -1,23 +1,4 @@
-# Instrukcja Obsługi Aplikacji
-
-## Spis Treści
-
-1. [Edycja klienta – Loga dodatkowe](#edycja-klienta--loga-dodatkowe)
-    1.1 [Edycja klienta](#11-edycja-klienta)
-    1.2 [Dodaj logo dodatkowe](#12-dodaj-logo-dodatkowe)
-    1.3 [Zapisz dodane logo dodatkowe](#13-zapisz-dodane-logo-dodatkowe)
-    1.4 [Usuń zapisane logo dodatkowe](#14-usuń-zapisane-logo-dodatkowe)
-    1.5 [Podgląd przesłanego loga dodatkowego](#15-podgląd-przesłanego-loga-dodatkowego)
-
-2. [Dodawanie i Edycja projektu](#dodawanie-i-edycja-projektu)
-    2.1 [Dodaj kolejnego klienta](#21-dodaj-kolejnego-klienta)
-    2.2 [Usuń klienta](#22-usuń-klienta)
-    2.3 [Wybierz logo dla projektu](#23-wybierz-logo-dla-projektu)
-    2.4 [Oznacz logo główne w edycji projektu](#24-oznacz-logo-główne-w-edycji-projektu)
-
-3. [Podgląd projektu – Dodawanie komentarzy](#podgląd-projektu--dodawanie-komentarzy)
-    3.1 [Dodaj komentarz](#31-dodaj-komentarz)
-    3.2 [Usuń komentarz](#32-usuń-komentarz)
+# Instrukcja do zadania rozbudowy kodu CRM
 
 ---
 
