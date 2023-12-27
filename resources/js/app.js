@@ -2,6 +2,10 @@ import {createApp} from 'vue'
 
 import CommentComponent from './components/CommentComponent.vue'
 
-const app = createApp(CommentComponent, { projectId: document.getElementById('commentComponentApp').dataset.projectId });
-app.mount("#commentComponentApp");
+const commentComponentAppElement = document.getElementById('commentComponentApp');
+
+if (commentComponentAppElement) {
+  const app = createApp(CommentComponent, { projectId: commentComponentAppElement.dataset.projectId });
+  app.mount("#commentComponentApp");
+}
 

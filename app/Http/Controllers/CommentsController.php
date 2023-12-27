@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
-use App\Models\Comment;
+use App\Services\Contracts\CommentServiceInterface;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
-    public function index($projectId)
+    protected $commentService;
+
+    public function __construct(CommentServiceInterface $commentService)
+    {
+        $this->commentService = $commentService;
+    }
+
+    public function index(int $projectId)
     {
         try {
-            $comments = Comment::where('commentable_id', $projectId)
-                ->where('commentable_type', '=', 'project')
-                ->get();
+            $comments = $this->commentService->getCommentsForProject($projectId);
 
             return response()->json($comments, 200);
         } catch (\Exception $e) {
@@ -21,35 +25,25 @@ class CommentsController extends Controller
         }
     }
 
-    public function store(Request $request, $projectId) {
+    public function store(Request $request, int $projectId) {
         $request->validate([
             'text' => 'required|string',
         ]);
-    
+
         try {
-            $project = Project::findOrFail($projectId);
-    
-            $comment = new Comment([
-                'text' => $request->input('text'),
-                'commentable_id' => $project->id,
-                'commentable_type' => 'project',
-            ]);
-    
-            $comment->save();
-    
-            return response()->json(['message' => 'Komentarz został dodany pomyślnie.'], 200);
+            $result = $this->commentService->addCommentToProject($projectId, $request->input('text'));
+
+            return response()->json(['message' => $result], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Wystąpił błąd podczas dodawania komentarza.'], 500);
         }
     }
 
-    public function destroy($comment) {
+    public function destroy(int $comment) {
         try {
-            $comment = Comment::findOrFail($comment);
+            $result = $this->commentService->deleteComment($comment);
 
-            $comment->delete();
-            
-            return response()->json(['message' => 'Komentarz został usunięty pomyślnie.'], 200);
+            return response()->json(['message' => $result], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Wystąpił błąd podczas usuwania komentarza.'], 500);
         }
