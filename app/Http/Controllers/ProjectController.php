@@ -18,7 +18,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::get();
+        $projects = Project::with('clients')->get();
+
         return view('project.index', compact('projects'));
     }
 
@@ -31,7 +32,8 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $clients = Client::get();
-        return view('project.create', compact('project', 'clients'));
+        $mode = 'create';
+        return view('project.create', compact('project', 'clients', 'mode'));
     }
 
     /**
@@ -67,7 +69,38 @@ class ProjectController extends Controller
 
         Session::flash('success_message', 'Dane zostały zapisane');
 
-        return redirect()->route('project-index');
+        return redirect()->route('project-edit', $project->id);
+    }
+
+    public function update(ProjectRequest $request, $id)
+    {
+        $project = Project::find($id);
+
+        if (!$project) {
+            abort(404);
+        }
+
+        $project->name = $request->input('name');
+        $project->deadline = $request->input('deadline');
+        $project->description = $request->input('description');
+
+        $project->logo = $request->input('logo');
+
+        $project->save();
+
+        if ($request->has('client_id') && is_array($request->input('client_id')) && !in_array(null, $request->input('client_id'), true)) {
+            $clientIds = $request->input('client_id');
+            $filteredClientIds = array_filter($clientIds, function ($clientId) {
+                return $clientId !== null;
+            });
+            $project->clients()->sync($filteredClientIds);
+        } else {
+            $project->clients()->detach();
+        }
+
+        Session::flash('success_message', 'Dane zostały zaktualizowane');
+
+        return redirect()->route('project-show', $project->id);
     }
 
     /**
@@ -83,7 +116,8 @@ class ProjectController extends Controller
             abort(404);
         }
         $clients = Client::get();
-        return view('project.edit', compact('project', 'clients'));
+        $mode = 'edit';
+        return view('project.edit', compact('project', 'clients', 'mode'));
     }
 
     /**

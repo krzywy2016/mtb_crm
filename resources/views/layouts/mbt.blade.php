@@ -92,6 +92,8 @@
 
     @vite(['resources/js/app.js'])
 
+    @yield('scripts')
+
     <script>
         @if ($errors->any())
             @foreach (array_reverse($errors->all()) as $error)

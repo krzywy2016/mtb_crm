@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/create', [ProjectController::class, 'create'])->name('project-create');
         Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('project-edit');
         Route::post('/store', [ProjectController::class, 'store'])->name('project-store');
-        Route::post('/update/{id}', [ProjectController::class, 'store'])->name('project-update');
+        Route::post('/update/{id}', [ProjectController::class, 'update'])->name('project-update');
         Route::get('/destroy/{id}', [ProjectController::class, 'destroy'])->name('project-destroy');
         Route::get('/show/{id}', [ProjectController::class, 'show'])->name('project-show');
     });
