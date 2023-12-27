@@ -1,66 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Instrukcja Obsługi Aplikacji
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Spis Treści
 
-## About Laravel
+1. [Edycja klienta – Loga dodatkowe](#edycja-klienta--loga-dodatkowe)
+    1.1 [Edycja klienta](#11-edycja-klienta)
+    1.2 [Dodaj logo dodatkowe](#12-dodaj-logo-dodatkowe)
+    1.3 [Zapisz dodane logo dodatkowe](#13-zapisz-dodane-logo-dodatkowe)
+    1.4 [Usuń zapisane logo dodatkowe](#14-usuń-zapisane-logo-dodatkowe)
+    1.5 [Podgląd przesłanego loga dodatkowego](#15-podgląd-przesłanego-loga-dodatkowego)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2. [Dodawanie i Edycja projektu](#dodawanie-i-edycja-projektu)
+    2.1 [Dodaj kolejnego klienta](#21-dodaj-kolejnego-klienta)
+    2.2 [Usuń klienta](#22-usuń-klienta)
+    2.3 [Wybierz logo dla projektu](#23-wybierz-logo-dla-projektu)
+    2.4 [Oznacz logo główne w edycji projektu](#24-oznacz-logo-główne-w-edycji-projektu)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+3. [Podgląd projektu – Dodawanie komentarzy](#podgląd-projektu--dodawanie-komentarzy)
+    3.1 [Dodaj komentarz](#31-dodaj-komentarz)
+    3.2 [Usuń komentarz](#32-usuń-komentarz)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Edycja klienta – Loga dodatkowe
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1.1 Edycja klienta
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+W sekcji edycji klienta [makieta](http://mbtmedia.iq.pl/rekrutacja/fullstack/rekrutacja-edycjaklienta.html) dodajemy sekcję Loga dodatkowe. Domyślnie puste, a gdy puste, wyświetlamy informację "Brak dodanego loga dodatkowego".
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1.2 Dodaj logo dodatkowe
 
-## Laravel Sponsors
+Przycisk "Dodaj logo dodatkowe" otwiera modal o tej samej nazwie, a w nim pole:
+- Logo dodatkowe: File input, wymagane. Przyjmuje pliki png, jpg, jpeg. svg. 
+- Tekst walidacji: "Logo musi być plikiem typu jpg, jpeg, png, .svg". 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 1.3 Zapisz dodane logo dodatkowe
 
-### Premium Partners
+Przycisk "Zapisz" zapisuje dodane logo dodatkowe.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### 1.4 Usuń zapisane logo dodatkowe
 
-## Contributing
+Po zapisaniu wyświetlamy dodane logo w sekcji. Przed logiem umieszczamy przycisk "Usuń", który usuwa zapisane logo.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1.5 Podgląd przesłanego loga dodatkowego
 
-## Code of Conduct
+Podgląd przesłanego loga wyświetlamy w wysokości max: 50px.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Dodawanie i Edycja projektu
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 2.1 Dodaj kolejnego klienta
 
-## License
+W dodawaniu i edycji projektu [makieta](http://mbtmedia.iq.pl/rekrutacja/fullstack/rekrutacja-dodajprojekt.html) pod polem klient, dodajemy przycisk "Dodaj kolejny", który po kliknięciu dodaje kolejny wiersz z polem select, na wybór kolejnego klienta. Funkcja pozwala przypisać kilku klientów do projektu.
+Obok każdego wiersza na pole klienta umieszczamy przycisk "Usuń" - po kliknięciu usuwa wiersz klienta. Ważne: Jeśli został tylko jeden wiersz na pole klienta, przycisk "Usuń" jest zablokowany lub niewidoczny. Nie można usunąć wszystkich pól klienta – przynajmniej jedno jest wymagane.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 2.2 Usuń klienta
+
+Przycisk "Usuń" - po kliknięciu usuwa wiersz klienta. Jeśli został tylko jeden wiersz na pole klienta, przycisk "Usuń" jest zablokowany lub niewidoczny. Nie można usunąć wszystkich pól klienta – przynajmniej jedno jest wymagane.
+
+### 2.3 Wybierz logo dla projektu
+
+Na samym dole formularza, wyświetlamy sekcję "Wybierz logo", a w niej wszystkie loga klientów, którzy zostali wybrani w sekcji Klient. W sekcji wyświetlamy logo główne klienta oraz loga dodatkowe.
+Użytkownik, za pomocą radio buttonów, może wybrać, które logo ma być przypisane do projektu. 
+Przyjmujemy opcję, że wybrani klienci nie będą mieli przypisanego żadnego loga – wtedy sekcja jest pusta.
+
+### 2.4 Oznacz logo główne w edycji projektu
+
+W już istniejących projektach dla klientów, którzy mają logo główne, po wprowadzeniu zmian, to logo główne powinno być oznaczone jako wybrane w edycji projektu.
+
+---
+
+## Podgląd projektu – Dodawanie komentarzy
+
+### 3.1 Dodaj komentarz
+
+W podglądzie projektu, istnieje sekcja "Komentarze" - [makieta](http://mbtmedia.iq.pl/rekrutacja/fullstack/rekrutacja-zobacz-projekt.html). Dodaj mechanizm dodawania komentarzy używając pola "Komentarz" textarea oraz przycisku "Dodaj komentarz".
+
+### 3.2 Usuń komentarz
+
+Dla każdego dodanego komentarza dodajemy przycisk "Usuń", który po kliknięciu usuwa dany komentarz – bez przeładowania strony.
