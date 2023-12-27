@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="ibox-content"> 
-                @if (count(json_decode($client->extra_logos, true)) > 0)
+                @if (count(json_decode($client->extra_logos, true) ?? []) > 0)
                     @foreach (json_decode($client->extra_logos) as $extraLogo)
                         <div>
                             <button class="btn btn-danger btn-xs m-r tooltip-more delete-warning" title="Usuń" data-original-title="Usuń" onclick="confirmDelete('{{ $extraLogo }}')"> <i class="fa fa-trash" aria-hidden="true"></i></button>

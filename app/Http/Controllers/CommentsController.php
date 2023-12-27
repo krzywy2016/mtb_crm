@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Contracts\CommentServiceInterface;
+use App\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -25,11 +26,7 @@ class CommentsController extends Controller
         }
     }
 
-    public function store(Request $request, int $projectId) {
-        $request->validate([
-            'text' => 'required|string',
-        ]);
-
+    public function store(CommentRequest $request, int $projectId) {
         try {
             $result = $this->commentService->addCommentToProject($projectId, $request->input('text'));
 

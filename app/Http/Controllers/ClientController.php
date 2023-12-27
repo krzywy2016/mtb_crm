@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
+use App\Http\Requests\ExtraLogoRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -39,7 +40,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClientRequest $request, $id = null)
+    public function store(ClientRequest $request, int $id = null)
     {
         if ($id) {
             $client = Client::find($id);
@@ -80,7 +81,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $client = Client::find($id);
         if (!$client) {
@@ -95,7 +96,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $client = Client::find($id);
         if (!$client) {
@@ -115,12 +116,8 @@ class ClientController extends Controller
      * @param  int  $clientId
      * @return \Illuminate\Http\Response
      */
-    public function addExtraLogo(Request $request, $clientId)
+    public function addExtraLogo(ExtraLogoRequest $request, int $clientId)
     {
-        $request->validate([
-            'extra_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         $client = Client::find($clientId);
 
         if (!$client) {
@@ -142,7 +139,7 @@ class ClientController extends Controller
         return back()->with('success_message', 'Logo dodatkowe zostało dodane.');
     }
 
-    public function removeExtraLogo($clientId, $extraLogoPath)
+    public function removeExtraLogo(int $clientId, string $extraLogoPath)
     {
         $client = Client::find($clientId);
 

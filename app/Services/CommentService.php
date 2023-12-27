@@ -26,15 +26,6 @@ class CommentService implements CommentServiceInterface
 
     public function addCommentToProject(int $projectId, string $text) : array
     {
-        $validator = Validator::make(['text' => $text], [
-            'text' => 'required|string',
-        ]);
-
-        if ($validator->fails()) {
-            //
-            return ['error' => $validator->errors()->first()];
-        }
-
         try {
             $project = Project::findOrFail($projectId);
 
